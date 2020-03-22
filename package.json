@@ -1,0 +1,26 @@
+{
+  "name": "myfirstgatsby",
+  "version": "1.0.0",
+  "description": "Learning Gatsby project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gatsby develop",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edwintrumpet/my-first-gatsby.git"
+  },
+  "keywords": [],
+  "author": "Edwin García <spark.com.co@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edwintrumpet/my-first-gatsby/issues"
+  },
+  "homepage": "https://github.com/edwintrumpet/my-first-gatsby#readme",
+  "dependencies": {
+    "gatsby": "^2.20.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
