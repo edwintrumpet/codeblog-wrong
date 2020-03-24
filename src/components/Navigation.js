@@ -15,7 +15,7 @@ import {
 import Theme from '../styles/constants/themes';
 
 export default function Navigation() {
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
   const theme = Theme.light;
   // Posteriormente traeré estos datos de la lista de páginas
   const menuItems = [
