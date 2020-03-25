@@ -1,14 +1,26 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
+import Card from '../components/Card';
+import { Container } from '../styles/pages';
 
 export const query = graphql`
-  query GET_POSTS{
+  query {
     allFile {
       edges {
         node {
-          relativeDirectory
-          base
+          childMarkdownRemark {
+            id
+            frontmatter {
+              title
+              category
+              author
+              cover {
+                publicURL
+              }
+            }
+            excerpt(pruneLength: 100, truncate: false)
+          }
         }
       }
     }
@@ -17,35 +29,19 @@ export const query = graphql`
 
 export default function index({ data }) {
   const posts = [];
+
   data.allFile.edges.forEach((element) => {
-    const item = element.node;
-    let postsIndex = posts
-      .findIndex((postsElement) => postsElement.relativeDirectory === item.relativeDirectory);
-    if (postsIndex === -1) {
-      let [date, title] = item.relativeDirectory.split('--');
-      title = title.split('-').join(' ');
-      date = date.split('-');
-      date = new Date(date[0], date[1] - 1, date[2]);
-      posts.push({
-        title,
-        date,
-        relativeDirectory: item.relativeDirectory,
-        assets: [],
-      });
-      postsIndex = posts.length - 1;
-    }
-    if (item.base !== 'index.md') {
-      posts[postsIndex].assets.push(item.base);
-    }
+    const item = element.node.childMarkdownRemark;
+    if (item) posts.push(item);
   });
 
+  // eslint-disable-next-line no-console
   console.log(posts);
 
   return (
-    <>
-      <h1>index works!</h1>
-      <Link to="/about">Go About</Link>
-    </>
+    <Container>
+      {posts.map((element) => <Card key={element.id} {...element} />)}
+    </Container>
   );
 }
 
@@ -54,8 +50,18 @@ index.propTypes = {
     allFile: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.shape({
         node: PropTypes.shape({
-          relativeDirectory: PropTypes.string,
-          base: PropTypes.string,
+          childMarkdownRemark: PropTypes.shape({
+            id: PropTypes.string,
+            frontmatter: PropTypes.shape({
+              title: PropTypes.string,
+              category: PropTypes.string,
+              author: PropTypes.string,
+              cover: PropTypes.shape({
+                publicURL: PropTypes.string,
+              }),
+            }),
+            excerpt: PropTypes.string,
+          }),
         }),
       })),
     }),
