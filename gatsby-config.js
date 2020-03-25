@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: 'https://edwintrumpet.dev',
   plugins: [
     'gatsby-plugin-styled-components',
     {
