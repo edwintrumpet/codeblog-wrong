@@ -7,12 +7,17 @@ export const Container = styled.div`
     border-width: 2px;
     border-style: solid;
     height: 250px;
-    border-color: ${({ colors }) => colors.medium};
+    transition: all .3s ease;
+    border-color: ${({ colors }) => colors.primary};
+    &:hover {
+        box-shadow: 4px 4px 8px ${({ colors }) => colors.primary};
+    }
 `;
 
 export const ImageContainer = styled.div`
     flex: 1;
     width: 100%;
+    overflow: hidden;
 `;
 
 export const TextContainer = styled.div`
@@ -56,4 +61,10 @@ export const Author = styled.span`
     font-size: 13px;
     margin-left: 8px;
     color: ${({ colors }) => colors.highContrast};
+`;
+
+export const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
