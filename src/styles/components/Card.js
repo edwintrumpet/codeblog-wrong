@@ -17,7 +17,6 @@ export const Container = styled.div`
 export const ImageContainer = styled.div`
     flex: 1;
     width: 100%;
-    background-color: yellow;
     overflow: hidden;
 `;
 
