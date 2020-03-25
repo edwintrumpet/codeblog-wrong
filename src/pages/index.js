@@ -19,7 +19,7 @@ export const query = graphql`
                 publicURL
               }
             }
-            excerpt(pruneLength: 100, truncate: false)
+            excerpt(pruneLength: 120, truncate: false)
           }
         }
       }

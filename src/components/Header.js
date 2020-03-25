@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import {
   Container,
   Brand,
@@ -19,18 +20,20 @@ export default function Header() {
 
   return (
     <Container>
-      <Brand>
-        <DesktopIcon>
-          <Logo size={80} color={colors.lightGray} />
-        </DesktopIcon>
-        <MobileIcon>
-          <Logo size={60} color={colors.lightGray} />
-        </MobileIcon>
-        <BrandText>
-          <Title>{title}</Title>
-          <Subtitle>{subtitle}</Subtitle>
-        </BrandText>
-      </Brand>
+      <Link to="/">
+        <Brand>
+          <DesktopIcon>
+            <Logo size={80} color={colors.lightGray} />
+          </DesktopIcon>
+          <MobileIcon>
+            <Logo size={60} color={colors.lightGray} />
+          </MobileIcon>
+          <BrandText>
+            <Title>{title}</Title>
+            <Subtitle>{subtitle}</Subtitle>
+          </BrandText>
+        </Brand>
+      </Link>
       <Navigation />
     </Container>
   );
