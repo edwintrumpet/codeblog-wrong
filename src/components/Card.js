@@ -11,7 +11,6 @@ import {
   AuthorContainer,
   AvatarContainer,
   Author,
-  Image,
 } from '../styles/components/Card';
 import Themes from '../styles/constants/themes';
 
@@ -21,7 +20,6 @@ export default function Card({
     title,
     category,
     author,
-    cover: { publicURL },
   },
   excerpt,
 }) {
@@ -30,9 +28,7 @@ export default function Card({
   return (
     <Link to={id}>
       <Container colors={theme}>
-        <ImageContainer>
-          <Image src={publicURL} alt="imagen" />
-        </ImageContainer>
+        <ImageContainer />
         <TextContainer colors={theme}>
           <Category colors={theme}>{category}</Category>
           <Title colors={theme}>{title}</Title>
