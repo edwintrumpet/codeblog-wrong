@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'gatsby';
 import MenuIcon from '../assets/icons/MenuIcon';
 import CloseIcon from '../assets/icons/closeIcon';
 import {
@@ -13,17 +14,12 @@ import {
   CloseContainer,
 } from '../styles/components/Navigation';
 import Theme from '../styles/constants/themes';
+// Esto debería venir de graphql
+import menuItems from '../../content/meta/navigation';
 
 export default function Navigation() {
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
   const theme = Theme.light;
-  // Posteriormente traeré estos datos de la lista de páginas
-  const menuItems = [
-    'Inicio',
-    'Portafolio',
-    'Sobre mí',
-    'Contacto',
-  ];
 
   const handleClick = (event) => {
     event.stopPropagation();
@@ -34,7 +30,11 @@ export default function Navigation() {
     <>
       <DesktopMenu>
         <DesktopList>
-          {menuItems.map((item) => <ItemMenuDesktop key={item}>{item}</ItemMenuDesktop>)}
+          {menuItems.map((item) => (
+            <Link to={item.url}>
+              <ItemMenuDesktop key={item.name}>{item.name}</ItemMenuDesktop>
+            </Link>
+          ))}
         </DesktopList>
       </DesktopMenu>
       <MobileMenuIcon onClick={handleClick}>
@@ -47,7 +47,11 @@ export default function Navigation() {
       />
       <MobileMenu theme={theme} width={showMenu ? '80%' : '0'}>
         <MobileList>
-          {menuItems.map((item) => <MobileItem key={item} theme={theme}>{item}</MobileItem>)}
+          {menuItems.map((item) => (
+            <Link to={item.url}>
+              <MobileItem key={item} theme={theme}>{item.name}</MobileItem>
+            </Link>
+          ))}
           <CloseContainer>
             <CloseIcon onClick={handleClick} color={theme.highContrast} />
           </CloseContainer>
